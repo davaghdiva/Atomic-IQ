@@ -18,10 +18,9 @@ url: "https://github.com/davaghdiva/Atomic-IQ"
 version: "0.1.0"
 date-released: "2025-12-27"
 
-# If you have a Zenodo DOI for the software, uncomment and fill this section.
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.<YOUR_ZENODO_ID>"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.18069453"
 
 preferred-citation:
   type: software
@@ -35,22 +34,20 @@ preferred-citation:
       affiliation: "Ulster University"
   year: 2025
   version: "0.1.0"
+  doi: "10.5281/zenodo.18069453"
   url: "https://github.com/davaghdiva/Atomic-IQ"
-  # If you have a Zenodo DOI, uncomment:
-  # doi: "10.5281/zenodo.<YOUR_ZENODO_ID>"
 
-# Optional: include your paper as a reference. Fill in what you know.
-references:
   - type: article
     title: "Squeezed Covariance Matrix Estimation:
 Analytic Eigenvalue Control"
     authors:
-      - given-names: "William"
-        family-names: "Smyth"
       - given-names: "Layla"
         family-names: "Abu Khalaf"
+      - given-names: "William"
+        family-names: "Smyth"
+      
     year: 2025
-    journal: "<JOURNAL OR VENUE>"
+    journal: "SSRN Electronic Journal"
     # If available, uncomment one or more:
     # doi: "<PAPER DOI>"
     # url: "<PAPER URL>"
