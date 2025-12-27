@@ -37,9 +37,9 @@ preferred-citation:
   doi: "10.5281/zenodo.18069453"
   url: "https://github.com/davaghdiva/Atomic-IQ"
 
+references:
   - type: article
-    title: "Squeezed Covariance Matrix Estimation:
-Analytic Eigenvalue Control"
+    title: "Squeezed Covariance Matrix Estimation: Analytic Eigenvalue Control"
     authors:
       - given-names: "Layla"
         family-names: "Abu Khalaf"
@@ -48,6 +48,5 @@ Analytic Eigenvalue Control"
       
     year: 2025
     journal: "SSRN Electronic Journal"
-    # If available, uncomment one or more:
     # doi: "<PAPER DOI>"
     # url: "<PAPER URL>"
