@@ -1,5 +1,5 @@
 # Atomic-IQ: Covariance Estimation and Mean-Variance Backtests
-'''markdown
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18069453.svg)](https://doi.org/10.5281/zenodo.18069453)
 
 This repository contains the reference implementation of the **atomic-IQ (AIQ)** covariance parametrization and its evaluation in a mean-variance (Max-Sharpe) backtest against a range of benchmark covariance estimators.
