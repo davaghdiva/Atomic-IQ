@@ -197,4 +197,3 @@ For questions or comments regarding the implementation:
 
 - Contact: `drwss.academy@gmail.com`
 - Authors: William Smyth and Layla Abu Khalaf
-
