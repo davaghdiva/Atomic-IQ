@@ -211,7 +211,16 @@ If you use **Atomic-IQ** in academic work, please cite the software DOI (preferr
 }
 ```
 **Paper**
-Abu Khalaf, L., & Smyth, W. (2025). Squeezed Covariance Matrix Estimation: Analytic Eigenvalue Control. SSRN Electronic Journal.
+```@article{abukhalaf_smyth_squeezed_covariance_2025,
+  author  = {Abu Khalaf, Layla and Smyth, William},
+  title   = {Squeezed Covariance Matrix Estimation: Analytic Eigenvalue Control},
+  journal = {SSRN Electronic Journal},
+  year    = {2025},
+  doi     = {10.2139/ssrn.XXXXXXX},
+  url     = {https://ssrn.com/abstract=XXXXXXX},
+  note    = {SSRN working paper}
+}
+
 
 
 
