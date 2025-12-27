@@ -1,4 +1,6 @@
 # Atomic-IQ: Covariance Estimation and Mean-Variance Backtests
+'''markdown
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18069453.svg)](https://doi.org/10.5281/zenodo.18069453)
 
 This repository contains the reference implementation of the **atomic-IQ (AIQ)** covariance parametrization and its evaluation in a mean-variance (Max-Sharpe) backtest against a range of benchmark covariance estimators.
 
@@ -189,11 +191,26 @@ To reproduce the results reported in the associated paper:
 
 ---
 
-## Citation and contact
+## Citing
 
-If you use this code or the atomic-IQ methodology in academic or applied work, please cite the accompanying paper.
+If you use **Atomic-IQ** in academic work, please cite the software DOI (preferred). If you use the method described in our associated paper, please also cite the paper.
 
-For questions or comments regarding the implementation:
+### Software (preferred)
 
-- Contact: `drwss.academy@gmail.com`
-- Authors: William Smyth and Layla Abu Khalaf
+**DOI:** https://doi.org/10.5281/zenodo.18069453
+
+**BibTeX**
+```bibtex
+@software{smyth_abukhalaf_atomic_iq_2025,
+  author  = {Smyth, William and Abu Khalaf, Layla},
+  title   = {Atomic-IQ},
+  year    = {2025},
+  version = {0.1.0},
+  doi     = {10.5281/zenodo.18069453},
+  url     = {https://github.com/davaghdiva/Atomic-IQ}
+}
+
+```Abu Khalaf, L., & Smyth, W. (2025). Squeezed Covariance Matrix Estimation: Analytic Eigenvalue Control. SSRN Electronic Journal.
+
+
+
