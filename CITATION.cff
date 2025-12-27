@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this software in academic work, please cite the software. If you use the method described in the associated paper, please also cite the paper."
+title: "Atomic-IQ"
+type: software
+license: "Apache-2.0"
+
+authors:
+  - given-names: "William"
+    family-names: "Smyth"
+    affiliation: "Ulster University"
+  - given-names: "Layla"
+    family-names: "Abu Khalaf"
+    affiliation: "Ulster University"
+
+repository-code: "https://github.com/davaghdiva/Atomic-IQ"
+url: "https://github.com/davaghdiva/Atomic-IQ"
+
+version: "0.1.0"
+date-released: "2025-12-27"
+
+# If you have a Zenodo DOI for the software, uncomment and fill this section.
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.<YOUR_ZENODO_ID>"
+
+preferred-citation:
+  type: software
+  title: "Atomic-IQ"
+  authors:
+    - given-names: "William"
+      family-names: "Smyth"
+      affiliation: "Ulster University"
+    - given-names: "Layla"
+      family-names: "Abu Khalaf"
+      affiliation: "Ulster University"
+  year: 2025
+  version: "0.1.0"
+  url: "https://github.com/davaghdiva/Atomic-IQ"
+  # If you have a Zenodo DOI, uncomment:
+  # doi: "10.5281/zenodo.<YOUR_ZENODO_ID>"
+
+# Optional: include your paper as a reference. Fill in what you know.
+references:
+  - type: article
+    title: "Squeezed Covariance Matrix Estimation:
+Analytic Eigenvalue Control"
+    authors:
+      - given-names: "William"
+        family-names: "Smyth"
+      - given-names: "Layla"
+        family-names: "Abu Khalaf"
+    year: 2025
+    journal: "<JOURNAL OR VENUE>"
+    # If available, uncomment one or more:
+    # doi: "<PAPER DOI>"
+    # url: "<PAPER URL>"
