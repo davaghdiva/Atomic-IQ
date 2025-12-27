@@ -211,7 +211,8 @@ If you use **Atomic-IQ** in academic work, please cite the software DOI (preferr
 }
 ```
 **Paper**
-```@article{abukhalaf_smyth_squeezed_covariance_2025,
+```bibtex
+@article{abukhalaf_smyth_squeezed_covariance_2025,
   author  = {Abu Khalaf, Layla and Smyth, William},
   title   = {Squeezed Covariance Matrix Estimation: Analytic Eigenvalue Control},
   journal = {SSRN Electronic Journal},
