@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Atomic-IQ"
+type: software
+license: "Apache-2.0"
+version: "0.1.0"
+date-released: "2025-12-27"
+
+authors:
+  - given-names: "William"
+    family-names: "Smyth"
+    affiliation: "Ulster University"
+  - given-names: "Layla"
+    family-names: "Abu Khalaf"
+    affiliation: "Ulster University"
+
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.18069453"
+
+repository-code: "https://github.com/davaghdiva/Atomic-IQ"
+url: "https://github.com/davaghdiva/Atomic-IQ"
+
+preferred-citation:
+  type: software
+  title: "Atomic-IQ"
+  authors:
+    - given-names: "William"
+      family-names: "Smyth"
+      affiliation: "Ulster University"
+    - given-names: "Layla"
+      family-names: "Abu Khalaf"
+      affiliation: "Ulster University"
+  year: 2025
+  version: "0.1.0"
+  doi: "10.5281/zenodo.18069453"
+  url: "https://github.com/davaghdiva/Atomic-IQ"
