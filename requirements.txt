@@ -1,8 +1,6 @@
-numpy
-pandas
-scipy
-scikit-learn
-numba
-tqdm
-matplotlib
-optuna
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+pytest>=8
+tabulate>=0.9
