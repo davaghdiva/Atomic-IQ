@@ -1,144 +1,125 @@
-# Atomic-IQ: Constructive Covariance Estimation and Max-Sharpe Backtests
+# Atomic-IQ
 
-This repository contains the reference implementation of **Atomic-IQ (AIQ)** and the full empirical pipeline used for the long-only tangency (Max-Sharpe) study in the accompanying paper.
+Computational repository for the major revision of:
 
-The project can be executed end to end with a single command:
+**Atomic-IQ: constructive covariance estimation with intrinsic positive semidefiniteness for portfolio optimisation**
+
+This repository contains the final public Atomic-IQ estimator, the pre-2000 calibration pipeline, the January 2000–December 2024 long-only global minimum-variance (GMV) evaluation, benchmark implementations, frozen outputs, regression tests, and the manuscript-support scripts referenced in the paper and Supplementary Material.
+
+The default branch corresponds to the revised manuscript. The code associated with the originally submitted manuscript is preserved separately in the `original-submission` branch.
+
+## Scientific design
+
+Atomic-IQ constructs a correlation matrix from per-asset signed body/tail state histories through a two-state positive-semidefinite kernel and a Gram representation. The empirical covariance estimate is obtained by lifting that correlation matrix with ordinary sample standard deviations from the same rolling estimation window.
+
+### Frozen Atomic-IQ specification
+
+- noise gate: `c = 0.40`
+- tail threshold: `delta = 1.25`
+- body-state weight: `p = 0.10`
+- cross-state coupling: `chi = 0.90`
+- state-classification scale: MAD with normal-consistency factor `1 / Phi^{-1}(3/4) ≈ 1.4826`
+- covariance lift: ordinary sample standard deviation
+
+`chi=0.90` is fixed structurally. The pre-2000 calibration searches `c`, `delta`, and `p` only.
+
+## Calibration and evaluation
+
+### Calibration
+
+- 20-month rolling estimation window
+- realised calibration portfolios: September 1989–December 1999 (124 months)
+- long-only, fully invested GMV
+- 10 basis point transaction costs
+- gross turnover computed from drifted pre-trade weights
+- objective: minimise after-cost annualised realised GMV volatility
+
+The Gerber threshold (`GS_STAR`) and SRE residual-shrinkage parameter (`SRE_STAR`) are calibrated over the same pre-2000 period and objective. LS1–LS5 and NLS6–NLS8 retain their estimator-defined data-driven rules.
+
+### Evaluation
+
+The selected parameters are frozen before the evaluation begins. The reported evaluation contains exactly 300 realised monthly portfolios from **31 January 2000 through 31 December 2024**. The January 2000 portfolio uses only information available through December 1999.
+
+Every covariance method uses the same 20-month rolling information set, long-only GMV optimisation, weight cleanup, drifted-turnover convention, and transaction-cost accounting.
+
+## Benchmark menu
+
+- `AIQ` — Atomic-IQ
+- `HC` — historical/sample covariance
+- `LS1`–`LS5` — linear-shrinkage estimators
+- `NLS6`–`NLS8` — nonlinear-shrinkage estimators
+- `CRE` — constant residual eigenvalue RMT estimator
+- `SRE_STAR` — calibrated shrunk residual eigenvalue estimator
+- `GS_STAR` — calibrated Gerber statistic
+- `ID_KAPPA` — one-sided identity shrinkage of sample correlation to match Atomic-IQ's condition number when HC is more ill-conditioned
+- `EW` — equal-weight no-covariance reference portfolio
+
+## Reproduce the frozen study
 
 ```bash
-python run_atomic_iq.py
-```
-
-That runner executes, in sequence:
-
-1. AIQ parameter search (`aiq_mvo.py`)
-2. GS/SRE parameter search (`gs_sre_optuna.py`)
-3. Out-of-sample backtest across all methods (`diq_mvo.py`)
-4. Performance summary generation (`diq_mvo_performance.py`)
-5. Aggregate ranking generation (`ranking_performance.py`)
-6. Sharpe-ratio difference summaries (`aiq_sr_tests.py`)
-7. Portfolio implementation diagnostics (`postprocess_portfolio_diagnostics.py`)
-
-## Repository contents
-
-Core source files:
-
-- `aiq_cov.py` — Atomic-IQ covariance builders (AIQ1 and AIQ2)
-- `aiq_mvo.py` — in-sample AIQ parameter search
-- `gs_sre_optuna.py` — in-sample GS/SRE parameter search
-- `diq_mvo.py` — out-of-sample Max-Sharpe backtest
-- `diq_mvo_optimizer.py` — optimization and covariance back-end wrappers
-- `diq_mvo_trans_cost.py` — transaction-cost model
-- `diq_mvo_performance.py` — performance tables and exports
-- `ranking_performance.py` — per-metric and aggregate rankings
-- `aiq_sr_tests.py` — full-sample and rolling Sharpe-difference summaries
-- `postprocess_portfolio_diagnostics.py` — implementation diagnostics from saved portfolio paths
-- `defaults.py` — central configuration file
-- `run_atomic_iq.py` — convenience runner
-
-Data files:
-
-- `prices_multi_asset_master.csv`
-- `DGS3MO_monthly_rf.csv`
-
-Metadata and citation files:
-
-- `LICENSE`
-- `CITATION.cff`
-- `CITATION.bib`
-- `AI_DISCLOSURE.md`
-
-Example outputs:
-
-- `RESULTS.zip` — archived example outputs from a completed run of the project
-
-## Requirements
-
-- Python 3.10 or later
-
-Install the dependencies with:
-
-```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+./run_all.sh
 ```
 
-The current requirements file includes:
+or run the stages separately:
 
-- `numpy`
-- `pandas`
-- `scipy`
-- `scikit-learn`
-- `numba`
-- `tqdm`
-- `matplotlib`
-- `optuna`
+```bash
+python3 run_calibration.py
+python3 run_primary_gmv.py
+pytest -q
+```
 
-## Data expectations
+The calibration and primary GMV scripts write the public outputs under `RESULTS/`.
 
-The code expects the following CSV files in the project root unless alternative paths are set in `defaults.py`:
+## Main frozen outputs
 
-- `prices_multi_asset_master.csv`
-  - must contain a `Date` column parsable as dates
-  - remaining columns are asset prices
-  - the first `DEFAULTS["n_assets"]` columns are used
+### `RESULTS/calibration/`
 
-- `DGS3MO_monthly_rf.csv`
-  - interpreted according to the risk-free-rate settings in `defaults.py`
+- `selected_parameters.json` — frozen AIQ, GS* and SRE* selections
+- `atomic_calibration_surface.csv` — Atomic-IQ calibration grid
+- `gs_threshold_calibration.csv` — GS threshold calibration
+- `sre_alpha_calibration.csv` — SRE alpha calibration
+- `CALIBRATION_RESULTS.md` — compact calibration summary
 
-## Configuration
+### `RESULTS/primary_gmv/`
 
-All central settings are defined in `defaults.py`, including:
+- `gmv_publication_table.csv` — full-period outcomes reported in the manuscript
+- `monthly_gmv_results.csv` — monthly gross/net portfolio paths, turnover and method diagnostics
+- `gmv_subperiods.csv` — five-year supporting decomposition
+- `paired_bootstrap_primary_vs_all.csv` — paired moving-block bootstrap for AIQ-minus-comparator annualised realised volatility
+- `gmv_diagnostics.csv` — rank/eigenvalue and numerical-safeguard diagnostics
+- `gmv_summary.csv` — complete full-period summary generated by the frozen engine
+- `PRIMARY_GMV_RESULTS.md` — frozen result summary retained for auditability
 
-- number of assets
-- lookback window length
-- in-sample and out-of-sample dates
-- transaction-cost settings
-- Atomic-IQ parameter space and Optuna trial count
-- price and risk-free-rate paths
-- scaling, weighting, and PSD-repair options
+`gmv_risk_ranking.csv` and `gmv_broad_ranking.csv` are retained as frozen computational artefacts from the completed evaluation but are **not part of the revised manuscript's reported evidence**.
 
-To reproduce the paper's baseline setup, use the provided defaults unchanged.
+A convenience archive of the frozen core results is also retained as `RESULTS.zip`.
 
-## Outputs
+## Manuscript-support reproducibility scripts
 
-A full run creates the following output folders in the repository root:
+These scripts substantiate statements in the revised manuscript and Supplementary Material. They do not alter the frozen estimator, calibration, or portfolio results.
 
-- `OOS_results/`
-  - portfolio value series
-  - returns and turnover by method
-  - `performance.csv` / `performance.tex`
-  - `portfolio_diagnostics.csv`
-  - `result.pickle`
+- `semantic_checks.py` — reproduces the identical/opposite-history, universe-invariance and duplicate-asset semantic checks
+- `population_map_check.py` — reproduces the Gaussian/t(5) population-map illustration and optional multi-scramble numerical-accuracy check
+- `supplement_diagnostics.py` — recomputes the all-window correlation condition-number and inactivity summaries
+- `conditioning_summary.csv` — published condition-number summary generated by `supplement_diagnostics.py`
 
-- `ranking_results/`
-  - per-metric ranks
-  - aggregate rankings
+## Key implementation details
 
-- `SR_test_results/`
-  - full-sample Sharpe summaries
-  - rolling Sharpe-difference summaries
+At each rebalance, the previous target weights are first drifted by the realised asset returns. Gross turnover is the full sum of absolute changes between those drifted pre-trade weights and the new target weights. The first portfolio formation is treated as an initial purchase. The same multiplicative 10 basis point cost convention is used in calibration and evaluation.
 
-If you prefer not to generate these inside the repository root, adjust paths in the code before running.
+A common numerical positive-definiteness safeguard is available to all covariance methods. It is not part of the Atomic-IQ estimator definition and does not activate for Atomic-IQ in any of the 300 reported evaluation windows.
 
-## Reproducibility
+## Repository history
 
-To reproduce the study:
+The repository URL is unchanged from the original submission so that existing links remain valid. The originally submitted implementation is preserved in the `original-submission` branch. The default `main` branch contains the code and frozen outputs corresponding to the revised manuscript.
 
-1. Ensure the input CSV files are present.
-2. Check `defaults.py`.
-3. Run:
+## AI-assisted development disclosure
 
-   ```bash
-   python run_atomic_iq.py
-   ```
+See [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md). OpenAI ChatGPT (GPT-5.6 Sol) was used for coding assistance, debugging support, documentation, release preparation, and manuscript-support scripting. All released code and outputs remain the responsibility of the authors.
 
-4. Compare the exported results with the paper tables and supplementary material.
+## License
 
-## Citation
-
-If you use this software, please cite the software record in `CITATION.cff` / `CITATION.bib`.
-
-## Contact
-
-- William Smyth
-- Layla Abu Khalaf
-- Contact: `drwss.academy@gmail.com`
+Apache License 2.0. See [`LICENSE`](LICENSE).
