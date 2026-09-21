@@ -1,0 +1,16 @@
+risk_overall_rank,method,vol_rank,max_drawdown_rank,es95_rank,downside_deviation_rank,risk_aggregate
+1,AIQ,1,1,1,1,4
+2,HC,4,3,3,3,13
+3,ID_KAPPA,3,4,4,4,15
+4,LS3,2,14,2,2,20
+5,LS4,5,8,6,6,25
+6,LS5,6,11,5,5,27
+7,SRE_STAR,7,13,8,7,35
+8,GS_STAR,8,10,9,9,36
+8,CRE,9,12,7,8,36
+10,NLS7,10,7,10,10,37
+11,NLS6,11,6,11,11,39
+12,NLS8,12,5,12,12,41
+12,LS2,13,2,13,13,41
+14,LS1,14,9,14,14,51
+15,EW,15,15,15,15,60
