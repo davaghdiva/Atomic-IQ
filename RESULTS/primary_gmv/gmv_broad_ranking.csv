@@ -1,0 +1,16 @@
+broad_overall_rank,method,vol_rank,max_drawdown_rank,es95_rank,downside_deviation_rank,sharpe_rank,terminal_wealth_10bp_rank,broad_aggregate
+1,AIQ,1,1,1,1,11,15,30
+2,ID_KAPPA,3,4,4,4,6,11,32
+2,HC,4,3,3,3,7,12,32
+4,LS5,6,11,5,5,3,4,34
+5,SRE_STAR,7,13,8,7,4,5,44
+6,LS2,13,2,13,13,2,3,46
+7,LS3,2,14,2,2,13,14,47
+7,LS4,5,8,6,6,9,13,47
+7,CRE,9,12,7,8,5,6,47
+10,GS_STAR,8,10,9,9,8,8,52
+11,LS1,14,9,14,14,1,2,54
+12,NLS8,12,5,12,12,10,7,58
+13,NLS6,11,6,11,11,12,9,60
+14,NLS7,10,7,10,10,14,10,61
+15,EW,15,15,15,15,15,1,76

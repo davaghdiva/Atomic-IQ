@@ -1,0 +1,33 @@
+{
+  "calibration_period": {
+    "realised_start": "1989-09-30",
+    "realised_end": "1999-12-31",
+    "n_months": 124,
+    "lookback_months": 20,
+    "transaction_cost_bps": 10.0,
+    "objective": "minimise after-cost annualised realised long-only GMV volatility"
+  },
+  "Atomic-IQ": {
+    "parameters": {
+      "c": 0.4,
+      "delta": 1.25,
+      "p": 0.1,
+      "chi": 0.9
+    },
+    "grid_rank": 1,
+    "calibration_net_vol_pct": 4.093865320826615,
+    "selection_note": "chi=0.90 fixed structurally; c, delta and p selected by calibration"
+  },
+  "GS_STAR": {
+    "threshold": 0.92,
+    "grid_rank": 1,
+    "calibration_net_vol_pct": 4.05720400675363,
+    "selected_exact_slsqp_net_vol_pct": 4.05749015335271
+  },
+  "SRE_STAR": {
+    "alpha": 0.0,
+    "grid_rank": 1,
+    "calibration_net_vol_pct": 3.834260362674264,
+    "selected_exact_slsqp_net_vol_pct": 3.8340675394492103
+  }
+}

@@ -1,37 +1,20 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the metadata below."
-title: "Atomic-IQ"
+title: "Atomic-IQ: computational repository for the Quantitative Finance major revision"
+message: "Please cite the associated Atomic-IQ manuscript and this repository when using the code or frozen outputs."
 type: software
-license: "Apache-2.0"
-version: "0.1.0"
-date-released: "2025-12-27"
-
 authors:
-  - given-names: "William"
-    family-names: "Smyth"
-    affiliation: "Ulster University"
-  - given-names: "Layla"
-    family-names: "Abu Khalaf"
-    affiliation: "Ulster University"
-
-identifiers:
-  - type: doi
-    value: "10.5281/zenodo.18069453"
-
+  - family-names: "Abu Khalaf"
+    given-names: "Layla"
+  - family-names: "Smyth"
+    given-names: "William S."
+version: "2.0.0"
+date-released: "2026-09-21"
 repository-code: "https://github.com/davaghdiva/Atomic-IQ"
-url: "https://github.com/davaghdiva/Atomic-IQ"
-
 preferred-citation:
-  type: software
-  title: "Atomic-IQ"
+  type: article
+  title: "Atomic-IQ: constructive covariance estimation with intrinsic positive semidefiniteness for portfolio optimisation"
   authors:
-    - given-names: "William"
-      family-names: "Smyth"
-      affiliation: "Ulster University"
-    - given-names: "Layla"
-      family-names: "Abu Khalaf"
-      affiliation: "Ulster University"
-  year: 2025
-  version: "0.1.0"
-  doi: "10.5281/zenodo.18069453"
-  url: "https://github.com/davaghdiva/Atomic-IQ"
+    - family-names: "Abu Khalaf"
+      given-names: "Layla"
+    - family-names: "Smyth"
+      given-names: "William S."
